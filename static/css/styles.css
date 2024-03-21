@@ -141,7 +141,9 @@
  .button {
 	 transform: translateZ(40px);
 	 cursor: pointer;
+	 -webkit-backface-visibility: visible;
 	 -webkit-backface-visibility: hidden;
+	 backface-visibility: visible;
 	 backface-visibility: hidden;
 	 font-weight: bold;
 	 color: #fff;
@@ -160,7 +162,9 @@
 	 display: block;
 	 content: '';
 	 transform: translateZ(-40px);
+	 -webkit-backface-visibility: visible;
 	 -webkit-backface-visibility: hidden;
+	 backface-visibility: visible;
 	 backface-visibility: hidden;
 	 height: calc(100% - 20px);
 	 width: calc(100% - 20px);
