@@ -15,6 +15,7 @@ from sqlalchemy.future import select
 from sqlalchemy.sql import func
 import requests
 import os
+import datetime
 import gunicorn
 
 class Base(DeclarativeBase):
@@ -155,10 +156,11 @@ def home():
     with app.app_context():
         result = db_monsters.session.execute(db_monsters.select(MonsterTrucks).order_by(MonsterTrucks.name))
         all_trucks = result.scalars().all()
-    return render_template("index.html", trucks=all_trucks, user=current_user)
+    return render_template("index.html", trucks=all_trucks, user=current_user, dia=datetime.datetime.now().strftime("%B, %Y"))
 
 
 @app.route("/add", methods=["GET", "POST"])
+@admin_only
 def add():
 
     form = TruckAddForm()
@@ -182,6 +184,7 @@ def add():
     return render_template("add.html", form=form)
 
 @app.route("/edit", methods=["GET", "POST"])
+@admin_only
 def edit():
     form = TruckUpdateForm()
     truck_id = request.args.get('truck_id')
