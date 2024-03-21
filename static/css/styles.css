@@ -169,6 +169,7 @@
 	 top: 16px;
 	 box-shadow: 0 0 10px 10px rgba(26, 87, 230, 0.25);
 	 background-color: rgba(26, 87, 230, 0.25);
+	 transform-style: preserve-3d;
 }
 
 .button.delete-button {
