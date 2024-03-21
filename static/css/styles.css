@@ -141,10 +141,10 @@
  .button {
 	 transform: translateZ(40px);
 	 cursor: pointer;
-	 -webkit-backface-visibility: visible;
-	 -webkit-backface-visibility: hidden;
-	 backface-visibility: visible;
-	 backface-visibility: hidden;
+
+	 -webkit-backface-visibility: inherit;
+
+	 backface-visibility: inherit;
 	 font-weight: bold;
 	 color: #fff;
 	 padding: 0.5em 1em;
@@ -162,10 +162,10 @@
 	 display: block;
 	 content: '';
 	 transform: translateZ(-40px);
-	 -webkit-backface-visibility: visible;
-	 -webkit-backface-visibility: hidden;
-	 backface-visibility: visible;
-	 backface-visibility: hidden;
+
+	 -webkit-backface-visibility: inherit;
+
+	 backface-visibility: inherit;
 	 height: calc(100% - 20px);
 	 width: calc(100% - 20px);
 	 border-radius: 100px;
