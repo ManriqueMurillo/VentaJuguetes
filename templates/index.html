@@ -8,6 +8,22 @@
   <h1 class="heading">Hot Wheels a la venta</h1>
   <p class="description">Juguetes usados a la venta</p>
     {% for truck in trucks: %}
+
+
+               <div class="col-md-4 col-sm-6">
+                    <div class="box21">
+                        <img class="pic-1" src=url('{{truck.img_url}}'>
+                        <div class="box-content">
+                            <h4 class="title">{{truck.name}}</h4>
+                            <p class="description">{{truck.review}}</p>
+                            <p class="description">{{truck.rating}}</p>
+                            <p class="description">¢{{truck.price}}</p>
+                            <a class="read-more" href="#">Actualizar</a>
+                            <a class="read-more" href="#">Borrar</a>
+                        </div>
+                    </div>
+                </div>
+  
   <div class="card" >
     <div class="front" style="background-image: url('{{truck.img_url}}'); background-size: contain;
                               background-repeat: no-repeat; ">
