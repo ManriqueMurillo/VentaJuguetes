@@ -18,35 +18,14 @@
                             <p class="description">{{truck.review}}</p>
                             <p class="description">{{truck.rating}}</p>
                             <p class="description">¢{{truck.price}}</p>
-                            <a class="read-more" href="#">Actualizar</a>
+                            {% if user.id ==1 %}
+                            <a class="read-more" href="{{url_for('edit', truck_id=truck.id)}}">Actualizar</a>
                             <a class="read-more" href="#">Borrar</a>
+                            {%endif%}
                         </div>
                     </div>
                 </div>
-  
-  <div class="card" >
-    <div class="front" style="background-image: url('{{truck.img_url}}'); background-size: contain;
-                              background-repeat: no-repeat; ">
-        <p class="small" style="padding: 390px 20px 10px 20px">{{truck.status}}</p>
-    </div>
-    <div class="back">
-      <div>
-    <div class="title">{{truck.name}}<span class="release_date">(¢{{truck.price}})</span></div>
-        <div class="rating">
-            <label>{{truck.rating}}</label>
-          <i class="fas fa-star star"></i>
-        </div>
-          <p class="review">{{truck.review}}</p>
-        <p class="overview">
-            {{truck.review}}
-        </p>
-        {% if user.id ==1 %}
-        <a href="{{url_for('edit', truck_id=truck.id)}}" class="button">Actualizar</a>
-        <a href="#" class="button delete-button">Borrar</a>
-        {%endif%}
-      </div>
-    </div>
-  </div>
+
      {% endfor %}
 </div>
 
