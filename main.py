@@ -1,11 +1,12 @@
 import sqlalchemy.exc
+from ToEmail import send_notification
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float, exc
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, TextAreaField, validators
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -17,6 +18,7 @@ import requests
 import os
 import datetime
 import gunicorn
+import email_validator
 
 class Base(DeclarativeBase):
     pass
@@ -52,6 +54,15 @@ class UserForm(FlaskForm):
     email = StringField(label='Email')
     password = PasswordField(label='Password')
     submit_button = SubmitField(label="Register")
+
+
+class ContactForm(FlaskForm):
+    name = StringField(label='Nombre', validators=[validators.InputRequired()])
+    email = StringField(label='Email', validators=[validators.InputRequired(), validators.Email()])
+    phone = StringField(label='Telefono', validators=[validators.InputRequired()])
+    message = TextAreaField(label='Mensaje', validators=[validators.InputRequired()])
+    submit_button = SubmitField(label="Enviar")
+
 
 class TruckUpdateForm(FlaskForm):
     name = StringField(label='Nombre')
@@ -151,12 +162,26 @@ def login():
     return render_template("login.html", form=form, loggedin=loggedin, user=current_user)
 
 
-@app.route("/")
+@app.route("/",methods=["GET", "POST"])
 def home():
+    form = ContactForm()
     with app.app_context():
         result = db_monsters.session.execute(db_monsters.select(MonsterTrucks).order_by(MonsterTrucks.name))
         all_trucks = result.scalars().all()
-    return render_template("index.html", trucks=all_trucks, user=current_user, dia=datetime.datetime.now().strftime("%B, %Y"))
+    if request.method == "POST" and form.validate_on_submit():
+        name = form.name.data
+        phone = form.phone.data
+        email = form.email.data
+        message = form.message.data
+        send_notification(subject="***Interesado en juguetes***", body="Nombre: " + name + "\nTelefono:" + phone +
+                          "\nEmail:" + email + "\n" + "\n" + message, to_email="manrique.murillo.c@gmail.com",
+                          from_email="manrique.bot.python@gmail.com")
+        flash("Mensaje enviado, gracias!")
+        form.name.data = ""
+        form.phone.data = ""
+        form.email.data = ""
+        form.message.data = ""
+    return render_template("index.html", trucks=all_trucks, user=current_user, dia=datetime.datetime.now().strftime("%B, %Y"), form=form)
 
 
 @app.route("/add", methods=["GET", "POST"])
