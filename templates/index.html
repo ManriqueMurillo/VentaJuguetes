@@ -16,10 +16,11 @@
                         <div class="box-content">
                             <h4 class="title">{{truck.name}}</h4>
                             <p class="description">{{truck.review}}</p>
-                            <p class="description">{{truck.rating}}</p>
-                            <p class="description">¢{{truck.price}}</p>
+                            <p class="rating">{{truck.rating}}</p>
+                            <p class="price">¢{{truck.price}}</p>
                             {% if user.id ==1 %}
                             <a class="read-more" href="{{url_for('edit', truck_id=truck.id)}}">Actualizar</a>
+                            <p></p>
                             <a class="read-more" href="#">Borrar</a>
                             {%endif%}
                         </div>
