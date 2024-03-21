@@ -24,7 +24,7 @@
         <p class="overview">
             {{truck.review}}
         </p>
-        <div>
+        <div style="backface-visibility:hidden">
         <a href="{{url_for('edit', truck_id=truck.id)}}" class="button">Actualizar</a>
         <a href="#" class="button delete-button">Borrar</a>
         </div>
