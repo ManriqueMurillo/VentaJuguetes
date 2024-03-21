@@ -172,6 +172,7 @@
 	 left: 10px;
 	 top: 16px;
 	 box-shadow: 0 0 10px 10px rgba(26, 87, 230, 0.25);
+	 transform-style: preserve-3d;
 	 background-color: rgba(26, 87, 230, 0.25);
 }
 
