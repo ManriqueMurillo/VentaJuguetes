@@ -1,5 +1,8 @@
 import smtplib
 import os
+import requests
+
+
 
 def send_notification(subject: str, body: str, from_email: str, to_email: str) -> bool:
 	return requests.post(
