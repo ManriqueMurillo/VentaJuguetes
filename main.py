@@ -175,7 +175,7 @@ def home():
         message = form.message.data
         send_notification(subject="***Interesado en juguetes***", body="Nombre: " + name + "\nTelefono:" + phone +
                           "\nEmail:" + email + "\n" + "\n" + message, to_email="manrique.murillo.c@gmail.com",
-                          from_email="manrique.bot.python@gmail.com")
+                          from_email=)
         flash("Mensaje enviado, gracias!")
         form.name.data = ""
         form.phone.data = ""
