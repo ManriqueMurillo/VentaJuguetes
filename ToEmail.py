@@ -12,7 +12,7 @@ def send_notification(subject: str, body: str, from_email: str, to_email: str):
 			"to": to_email,
 			"subject": subject,
 			"text": body})
-	print(message)
+	print(message.text)
 	return message
 
 # You can see a record of this email in your logs: https://app.mailgun.com/app/logs.
