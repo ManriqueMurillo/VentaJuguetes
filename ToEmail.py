@@ -1,16 +1,7 @@
 import smtplib
 import os
 
-
 def send_notification(subject: str, body: str, from_email: str, to_email: str) -> bool:
-    with smtplib.SMTP("smtp.gmail.com") as connection:
-        message = "Subject:" + subject + "\n\n" + body
-        connection.starttls()
-        connection.login(user=from_email, password=os.environ["GMAIL_PASSWORD"])
-        response = connection.sendmail(from_addr=from_email, to_addrs=to_email, msg=message)
-        print(response)
-    return True
-def send_simple_message():
 	return requests.post(
 		"https://api.mailgun.net/v3/sandbox57bbca6e8fa04dbf881d5afcb0f1aa54.mailgun.org/messages",
 		auth=("api", "<PRIVATE_API_KEY>"),
