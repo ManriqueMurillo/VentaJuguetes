@@ -4,7 +4,7 @@ import requests
 
 
 
-def send_notification(subject: str, body: str, from_email: str, to_email: str):
+def send_notification(subject: str, body: str, from_email: str, to_email: str) -> str:
 	message=requests.post(
 		"https://api.mailgun.net/v3/sandbox57bbca6e8fa04dbf881d5afcb0f1aa54.mailgun.org/messages",
 		auth=("api", os.environ.get("PRIVATE_API_KEY")),
@@ -13,7 +13,7 @@ def send_notification(subject: str, body: str, from_email: str, to_email: str):
 			"subject": subject,
 			"text": body})
 	print(message.text)
-	return message
+	return message.text
 
 # You can see a record of this email in your logs: https://app.mailgun.com/app/logs.
 
