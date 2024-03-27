@@ -173,10 +173,10 @@ def home():
         phone = form.phone.data
         email = form.email.data
         message = form.message.data
-        mensaje=send_notification(subject="***Interesado en juguetes***", body="Nombre: " + name + "\nTelefono:" + phone +
+        mensaje = send_notification(subject="***Interesado en juguetes***", body="Nombre: " + name + "\nTelefono:" + phone +
                           "\nEmail:" + email + "\n" + "\n" + message, to_email="manrique.murillo.c@gmail.com",
                           from_email="postmaster@sandbox57bbca6e8fa04dbf881d5afcb0f1aa54.mailgun.org")
-        #flash(mensaje)
+        flash("Mensaje enviado, gracias!. Pronto te contactamos.")
         form.name.data = ""
         form.phone.data = ""
         form.email.data = ""
